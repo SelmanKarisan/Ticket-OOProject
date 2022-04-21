@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Bus extends Transit{
 
     public Bus(int price, int travelTime, String destination, String initialLocation, double coefficentOfPrice) {
@@ -14,7 +12,6 @@ public class Bus extends Transit{
 
     @Override
     public void createSeat() {
-
     }
 
 }

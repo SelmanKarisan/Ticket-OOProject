@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import java.util.ArrayList;
 
-=======
->>>>>>> 70132a75780fdd11e0404b2b0d3a235cb05bacae
 public abstract class Transit implements Info {
     private int price;
     private int travelTime;
@@ -17,7 +14,9 @@ public abstract class Transit implements Info {
         this.travelTime = travelTime;
         this.destination = destination;
         this.initialLocation = initialLocation;
-        setSeats(new ArrayList<>());
+        seats = new ArrayList<>();
+        generateSeats(20);
+        // priint();
 
     }
 
@@ -70,14 +69,14 @@ public abstract class Transit implements Info {
     }
 
     public ArrayList<Seat> generateSeats(int maxSeatCapacity) {
-        String letter = "A";
-        for (int i = 0; i < maxSeatCapacity;) {
-            String location = letter + (i + 1);
-            if (i % 4 == 0) {
-                i = 0;
-                location = 
-                seats.add(new Seat(location));
+        char letter = 'A';
+        for (int i = 0; i < maxSeatCapacity;i+=4) {
+            for (int j = 0; j <4; j++) {
+                String location = String.valueOf(letter) + (j + 1);
+                    seats.add(new Seat(location));
             }
+            letter++;
         }
+        return seats;
     }
 }

@@ -11,7 +11,6 @@ public class Train extends Transit{
 
     @Override
     public void createSeat() {
-
     }
     
 }
