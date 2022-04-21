@@ -1,17 +1,24 @@
-
-
 public abstract class Transit {
-
     private int price;
     private int travelTime;
+    private double coefficentOfPrice;
     private String destination;
     private String initialLocation;
 
-    public Transit(int price, int travelTime, String destination, String initialLocation) {
+    public Transit(int price, int travelTime, String destination, String initialLocation,double coefficentOfPrice) {
         this.price = price;
+        this.coefficentOfPrice = coefficentOfPrice;
         this.travelTime = travelTime;
         this.destination = destination;
         this.initialLocation = initialLocation;
+    }
+
+    public double getCoefficentOfPrice() {
+        return coefficentOfPrice;
+    }
+
+    public void setCoefficentOfPrice(double coefficentOfPrice) {
+        this.coefficentOfPrice = coefficentOfPrice;
     }
 
     public int getPrice() {
@@ -45,7 +52,5 @@ public abstract class Transit {
     public void setInitialLocation(String initialLocation) {
         this.initialLocation = initialLocation;
     }
-
-
 
 }
