@@ -69,7 +69,6 @@ public abstract class Transit implements Info {
         this.initialLocation = initialLocation;
     }
 
-<<<<<<< HEAD
     public ArrayList<Seat> generateSeats(int maxSeatCapacity) {
         String letter = "A";
         for (int i = 0; i < maxSeatCapacity;) {
@@ -81,8 +80,4 @@ public abstract class Transit implements Info {
             }
         }
     }
-=======
-    
-
->>>>>>> 70132a75780fdd11e0404b2b0d3a235cb05bacae
 }
