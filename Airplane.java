@@ -1,3 +1,3 @@
-public class Airplane {
+public class Airplane extends Transit{
     
 }

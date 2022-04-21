@@ -1,3 +1,3 @@
-public abstract class  Transit {
+public abstract class Transit {
     
 }

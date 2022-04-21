@@ -1,3 +1,3 @@
-public class Train {
+public class Train extends Transit{
     
 }
