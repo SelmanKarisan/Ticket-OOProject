@@ -17,6 +17,7 @@ public abstract class Transit implements Info {
         seats = new ArrayList<>();
         generateSeats(20);
         // priint();
+        
 
     }
 
