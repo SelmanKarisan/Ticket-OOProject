@@ -1,4 +1,4 @@
-public abstract class Transit {
+public abstract class Transit implements Info {
     private int price;
     private int travelTime;
     private double coefficentOfPrice;
@@ -52,5 +52,7 @@ public abstract class Transit {
     public void setInitialLocation(String initialLocation) {
         this.initialLocation = initialLocation;
     }
+
+    
 
 }

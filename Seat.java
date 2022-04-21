@@ -1,10 +1,12 @@
 public class Seat {
     private String location;
-    private boolean isEmpty;
+    private boolean isEmpty=false;
+    
 
     public String getLocation() {
         return this.location;
     }
+
 
     public void setLocation(String location) {
         this.location = location;
@@ -22,9 +24,8 @@ public class Seat {
         this.isEmpty = isEmpty;
     }
 
-    public Seat(String location, boolean isEmpty) {
+    public Seat(String location) {
         this.location = location;
-        this.isEmpty = isEmpty;
     }
 
 }
