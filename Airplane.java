@@ -6,19 +6,11 @@ public class Airplane extends Transit{
 
     @Override
     public void calculatePrice() {
-<<<<<<< HEAD
-=======
-        // TODO Auto-generated method stub
->>>>>>> 70132a75780fdd11e0404b2b0d3a235cb05bacae
         
     }
 
     @Override
     public void createSeat() {
-<<<<<<< HEAD
-=======
-        // TODO Auto-generated method stub
->>>>>>> 70132a75780fdd11e0404b2b0d3a235cb05bacae
         
     }
     
