@@ -1,6 +1,6 @@
 public class Seat {
     private String location;
-    private boolean isEmpty = false;
+    private boolean isEmpty = true;
 
     public Seat(String location) {
         this.location = location;
