@@ -25,7 +25,7 @@ public class Test {
             // kullanıcı doğru giriş yaptığı zaman
             Boolean entry =true;
             while(entry){
-             System.out.println("Kullanıcı adını giriniz:");
+            System.out.println("Kullanıcı adını giriniz:");
             String UserName=scanner.next();
             System.out.println("Şifrenizi giriniz:");
             String password=scanner.next();
