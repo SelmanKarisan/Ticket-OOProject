@@ -55,6 +55,36 @@ public class Test {
 
             switch (transitSelection) {
                 case 1: 
+                System.out.println("Varış yerini giriniz:");
+                String destination=scanner.next();
+                System.out.println("Başlangıç yeri seçiniz:");
+                String initialLocation=scanner.next();
+                System.out.println("Seyehat edilecek zamanı seçiniz:\n1:Sabah\n2:Öğle\n3:Akşam\n4:Gece");
+                int selectionForTravelTime=scanner.nextInt();
+                String travelTime;
+                switch (selectionForTravelTime) {
+                    case 1:
+                    travelTime="Sabah";
+                    break;
+                    case 2:
+                    travelTime="Öğle";
+                    break;
+                    case 3:
+                    travelTime="Akşam";
+                    break;
+                    case 4:
+                    travelTime="Gece"; 
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("Seyehat fiyatını giriniz:");
+                int price=scanner.nextInt();
+                System.out.println("Seyehat pahalılık katsayısını giriniz:");
+                int coeff=scanner.nextInt();
+                System.out.println("Maksimum koltuk sayısını giriniz:");
+                int maxSeatCapacity=scanner.nextInt();
+
                     Airplane airplane = new Airplane(31, "Öğle", "destination", "initialLocation", 31.31, 20);
                     file = new File("./TravelPlan.txt");
                     fileWriter = new FileWriter(file);

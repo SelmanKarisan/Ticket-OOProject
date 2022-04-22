@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class Transit implements Info {
-    private int price;
+    private double price;
     private double travelTime;
     private String destination;
     private String initialLocation;
@@ -9,10 +9,10 @@ public abstract class Transit implements Info {
     private int maxSeatCapacity;
     private ArrayList<Seat> seats;
 
-    public Transit(int price, String travelTime, String destination, String initialLocation, double coefficentOfPrice,
+    public Transit(double price, String travelTime2, String destination, String initialLocation, double coefficentOfPrice,
             int maxSeatCapacity) throws Exception {
         this.price = price;
-        setTravelTime(travelTime);
+        setTravelTime(travelTime2);
         this.destination = destination;
         this.initialLocation = initialLocation;
         this.coefficentOfPrice = coefficentOfPrice;
@@ -47,11 +47,11 @@ public abstract class Transit implements Info {
         this.coefficentOfPrice = coefficentOfPrice;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
