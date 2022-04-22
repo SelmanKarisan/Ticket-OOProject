@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public abstract class Transit implements Info {
     private int price;
-    private int travelTime;
+    private double travelTime;
     private String destination;
     private String initialLocation;
     private double coefficentOfPrice;
     private int maxSeatCapacity;
     private ArrayList<Seat> seats;
 
-    public Transit(int price, int travelTime, String destination, String initialLocation, double coefficentOfPrice,
+    public Transit(int price, String travelTime, String destination, String initialLocation, double coefficentOfPrice,
             int maxSeatCapacity) {
         this.price = price;
-        this.travelTime = travelTime;
+        setTravelTime(travelTime);
         this.destination = destination;
         this.initialLocation = initialLocation;
         this.coefficentOfPrice = coefficentOfPrice;
@@ -55,12 +55,35 @@ public abstract class Transit implements Info {
         this.price = price;
     }
 
-    public int getTravelTime() {
-        return this.travelTime;
+    public String getTravelTime() {
+        if (travelTime == 1.5) {
+            return "Sabah";
+        } else if (travelTime == 2) {
+            return "Öğle";
+        } else if (travelTime == 2.5) {
+            return "Akşam";
+        } else if (travelTime == 3) {
+            return "Gece";
+        }
     }
 
-    public void setTravelTime(int travelTime) {
-        this.travelTime = travelTime;
+    public void setTravelTime(String travelTime) {
+        switch (travelTime) {
+            case "Sabah":
+                this.travelTime = 1.5;
+                break;
+            case "Öğle":
+                this.travelTime = 2;
+                break;
+            case "Akşam":
+                this.travelTime = 2.5;
+                break;
+            case "Gece":
+                this.travelTime = 3;
+                break;
+            default:
+                break;
+        }
     }
 
     public String getDestination() {
