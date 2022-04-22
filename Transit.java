@@ -66,6 +66,7 @@ public abstract class Transit implements Info {
             return "Gece";
         } else {
             throw new Exception("bulunamadı!");
+            
         }
     }
 
