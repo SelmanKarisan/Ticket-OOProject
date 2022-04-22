@@ -1,6 +1,6 @@
 public class Train extends Transit {
 
-    public Train(int price, int travelTime, String destination, String initialLocation, double coefficentOfPrice,
+    public Train(int price, double travelTime, String destination, String initialLocation, double coefficentOfPrice,
             int maxSeatCapacity) {
         super(price, travelTime, destination, initialLocation, coefficentOfPrice, maxSeatCapacity);
         super.generateSeats(maxSeatCapacity);
