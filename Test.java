@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
 import java.util.Scanner;
 
 public class Test {
     private static Scanner scanner;
+    private static FileReader file;
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
@@ -42,11 +47,11 @@ public class Test {
             System.out.println("2-Tren");
             System.out.println("3-Otobüs");
             int transitSelection = scanner.nextInt();
+
             switch (transitSelection) {
-                case 1:
-                    // Airplane airplane = new Airplane(price, travelTime, destination,
-                    // initialLocation, coefficentOfPrice,
-                    // maxSeatCapacity);
+                case 1: 
+                    Airplane airplane = new Airplane(31, travelTime, destination, initialLocation, coefficentOfPrice, maxSeatCapacity);
+
                     break;
                 case 2:
                     // Train train = new Train(price, travelTime, destination, initialLocation,
