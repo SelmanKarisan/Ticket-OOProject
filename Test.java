@@ -1,13 +1,15 @@
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
     private static Scanner scanner;
     private static File file;
     private static FileWriter fileWriter;
+    private static FileReader fileReader;
+    private static ArrayList<String> fileContent;
     public static void main(String[] args) throws Exception {
         scanner = new Scanner(System.in);
         System.out.println("Marmara Turizm'e Hoşgeldiniz");
@@ -21,6 +23,9 @@ public class Test {
             String initialLocation = scanner.next().toLowerCase();
             System.out.println("Seyehat etmek istediğiniz aracı seçiniz:\n 1:Tren\n2:Uçak\n3:Otobüs");
             int selectionForVehicle = scanner.nextInt();
+            file = new File("./SeatShema.txt");
+            fileReader = new FileReader(file);
+            fileReader.read()
         }
         // seyehat ekleme sistemi için
         else if (selection == 2) {
@@ -54,6 +59,7 @@ public class Test {
                     file = new File("./TravelPlan.txt");
                     fileWriter = new FileWriter(file);
                     fileWriter.write(airplane.toString());
+                    fileWriter.write(airplane.shemaOfSeats());
                     break;
                 case 2:
                     // Train train = new Train(price, travelTime, destination, initialLocation,
