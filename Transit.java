@@ -98,5 +98,9 @@ public abstract class Transit implements Info {
             System.out.println("--------------------------");
         }
     }
+    @Override
+    public String toString() {
+        return "";
+    }
 
 }

@@ -15,5 +15,9 @@ public class Airplane extends Transit {
     public void createSeat() {
 
     }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
 }   
