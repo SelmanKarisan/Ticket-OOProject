@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,8 +7,8 @@ public class Test {
     private static Scanner scanner;
     private static File file;
     private static FileWriter fileWriter;
-    private static FileReader fileReader;
     private static ArrayList<String> fileContent;
+
     public static void main(String[] args) throws Exception {
         scanner = new Scanner(System.in);
         System.out.println("Marmara Turizm'e Hoşgeldiniz");
@@ -24,8 +23,10 @@ public class Test {
             System.out.println("Seyehat etmek istediğiniz aracı seçiniz:\n 1:Tren\n2:Uçak\n3:Otobüs");
             int selectionForVehicle = scanner.nextInt();
             file = new File("./SeatShema.txt");
-            fileReader = new FileReader(file);
-            fileReader.read()
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+
+            }
         }
         // seyehat ekleme sistemi için
         else if (selection == 2) {
@@ -46,7 +47,7 @@ public class Test {
                     System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
                 }
             }
-            //Kullancı girişi sonrası
+            // Kullancı girişi sonrası
             System.out.print("Hangi araç için sefer eklemek istiyorsunuz(1, 2 ya da 3'ü tuşlayın)");
             System.out.println("1-Uçak");
             System.out.println("2-Tren");
@@ -54,12 +55,12 @@ public class Test {
             int transitSelection = scanner.nextInt();
 
             switch (transitSelection) {
-                case 1: 
+                case 1:
                     Airplane airplane = new Airplane(31, "Öğle", "destination", "initialLocation", 31.31, 20);
                     file = new File("./TravelPlan.txt");
-                    fileWriter = new FileWriter(file);
+                    fileWriter = new FileWriter(file, true);
                     fileWriter.write(airplane.toString());
-                    fileWriter.write(airplane.shemaOfSeats());
+                    fileWriter.write("Airplane" + "\n-----------------" + airplane.shemaOfSeats());
                     break;
                 case 2:
                     // Train train = new Train(price, travelTime, destination, initialLocation,
