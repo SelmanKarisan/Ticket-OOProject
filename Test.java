@@ -20,31 +20,24 @@ public class Test {
         }
         //seyehat ekleme sistemi için 
         else if(Selection==2){
-            System.out.println("Kullanıcı adını giriniz:");
+            
+
+            // kullanıcı doğru giriş yaptığı zaman
+            Boolean entry =true;
+            while(entry){
+             System.out.println("Kullanıcı adını giriniz:");
             String UserName=scanner.next();
             System.out.println("Şifrenizi giriniz:");
             String password=scanner.next();
-
-            // kullanıcı doğru giriş yaptığı zaman
-            while(true){
                 if(UserName.equals("admin_marmara")&&password.equals("1883")){
 
-
-
-
-
+                entry=false;
                 }else if(UserName.equals("admin_marmara") && !password.equals("1883")){
-    
                 System.out.println("Şifreniz yanlış lütfen tekrar deneyiniz");
-                System.out.println("Şifrenizi giriniz:");
-                 password=scanner.next();
                 }else if(!UserName.equals("admin_marmara") && password.equals("1883")){
-    
-    
-    
+                System.out.println("Kullanıcı adınız yanlış lütfen tekrar deneyiniz");
                 }else if(!UserName.equals("admin_marmara") && !password.equals("1883")){
-    
-    
+                    System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
                 }
 
             }
