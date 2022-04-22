@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Test {
     private static Scanner scanner;
-    private static FileReader file;
-
-    public static void main(String[] args) {
+    private static File file;
+    private static FileWriter fileWriter;
+    public static void main(String[] args) throws Exception {
         scanner = new Scanner(System.in);
         System.out.println("Marmara Turizm'e Hoşgeldiniz");
         System.out.println("Bilet almak için: 1 \n Seyehat oluşturmak için: 2 ");
@@ -20,7 +20,7 @@ public class Test {
             System.out.println("Başlangıç noktası giriniz:(İlk harfi büyük giriniz !!!)");
             String initialLocation = scanner.next().toLowerCase();
             System.out.println("Seyehat etmek istediğiniz aracı seçiniz:\n 1:Tren\n2:Uçak\n3:Otobüs");
-            int SelectionforVehicle = scanner.nextInt();
+            int selectionForVehicle = scanner.nextInt();
         }
         // seyehat ekleme sistemi için
         else if (selection == 2) {
@@ -28,16 +28,16 @@ public class Test {
             boolean entry = true;
             while (entry) {
                 System.out.println("Kullanıcı adını giriniz:");
-                String UserName = scanner.next();
+                String userName = scanner.next();
                 System.out.println("Şifrenizi giriniz:");
                 String password = scanner.next();
-                if (UserName.equals("admin") && password.equals("1883")) {
+                if (userName.equals("admin") && password.equals("1883")) {
                     entry = false;
-                } else if (UserName.equals("admin") && !password.equals("1883")) {
+                } else if (userName.equals("admin") && !password.equals("1883")) {
                     System.out.println("Şifreniz yanlış lütfen tekrar deneyiniz");
-                } else if (!UserName.equals("admin") && password.equals("1883")) {
+                } else if (!userName.equals("admin") && password.equals("1883")) {
                     System.out.println("Kullanıcı adınız yanlış lütfen tekrar deneyiniz");
-                } else if (!UserName.equals("admin") && !password.equals("1883")) {
+                } else if (!userName.equals("admin") && !password.equals("1883")) {
                     System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
                 }
             }
@@ -50,8 +50,10 @@ public class Test {
 
             switch (transitSelection) {
                 case 1: 
-                    Airplane airplane = new Airplane(31, travelTime, destination, initialLocation, coefficentOfPrice, maxSeatCapacity);
-
+                    Airplane airplane = new Airplane(31, "Öğle", "destination", "initialLocation", 31.31, 20);
+                    file = new File("./TravelPlan.txt");
+                    fileWriter = new FileWriter(file);
+                    fileWriter.write(airplane.toString());
                     break;
                 case 2:
                     // Train train = new Train(price, travelTime, destination, initialLocation,
