@@ -58,7 +58,6 @@ public class Test {
                     // 2
                     // maxSeatCapacity);
                     break;
-
                 default:
                     break;
             }
