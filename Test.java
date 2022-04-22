@@ -41,6 +41,11 @@ public class Test {
                 }
 
             }
+            //Kullanıcı giriş yaptıktan sonra 
+            System.out.println("Hangi araç için sefer eklemek istiyorsunuz:\n1:Uçak\n2:Otobüs\n3:Tren");
+            int SelectionforTripType =scanner.nextInt();
+            
+
             
 
         }
