@@ -36,6 +36,7 @@ public class Test {
                     System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
                 }
             }
+            //Kullancı girişi sonrası
             System.out.print("Hangi araç için sefer eklemek istiyorsunuz(1, 2 ya da 3'ü tuşlayın)");
             System.out.println("1-Uçak");
             System.out.println("2-Tren");
