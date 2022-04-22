@@ -4,10 +4,12 @@ public class Train extends Transit {
             int maxSeatCapacity) throws Exception {
         super(price, travelTime, destination, initialLocation, coefficentOfPrice, maxSeatCapacity);
         super.generateSeats(maxSeatCapacity);
+        calculatePrice();
     }
 
     @Override
     public void calculatePrice() {
+        setPrice(getPrice()*getCoefficentOfPrice()*getTravelTimeValue());
 
     }
 

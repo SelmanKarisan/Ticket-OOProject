@@ -9,8 +9,10 @@ public class Bus extends Transit {
 
     @Override
     public void calculatePrice() {
-    setPrice(getPrice()*getCoefficentOfPrice()*getTravelTime());
+    
+    setPrice(getPrice()*getCoefficentOfPrice()*getTravelTimeValue());
     }
+
 
     @Override
     public void createSeat() {

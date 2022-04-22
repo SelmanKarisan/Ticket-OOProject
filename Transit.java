@@ -54,7 +54,9 @@ public abstract class Transit implements Info {
     public void setPrice(double price) {
         this.price = price;
     }
-
+    public double getTravelTimeValue(){
+        return this.travelTime;
+    }
     public String getTravelTime() throws Exception {
         if (travelTime == 1.5) {
             return "Sabah";

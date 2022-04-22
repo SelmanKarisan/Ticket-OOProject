@@ -9,6 +9,7 @@ public class Airplane extends Transit {
 
     @Override
     public void calculatePrice() {
+        setPrice(getPrice()*getCoefficentOfPrice()*getTravelTimeValue());
     }
 
     @Override
