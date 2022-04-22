@@ -3,19 +3,19 @@ import java.util.ArrayList;
 public abstract class Transit implements Info {
     private int price;
     private int travelTime;
-    private double coefficentOfPrice;
     private String destination;
     private String initialLocation;
+    private double coefficentOfPrice;
     private int maxSeatCapacity;
     private ArrayList<Seat> seats;
 
     public Transit(int price, int travelTime, String destination, String initialLocation, double coefficentOfPrice,
             int maxSeatCapacity) {
         this.price = price;
-        this.coefficentOfPrice = coefficentOfPrice;
         this.travelTime = travelTime;
         this.destination = destination;
         this.initialLocation = initialLocation;
+        this.coefficentOfPrice = coefficentOfPrice;
         this.maxSeatCapacity = maxSeatCapacity;
         seats = new ArrayList<>();
         generateSeats(20);
@@ -91,16 +91,19 @@ public abstract class Transit implements Info {
         return seats;
     }
 
-    public void printShemaOfSeats() {
-        System.out.println("--------------------------");
+    public String shemaOfSeats() {
+        String shema = "--------------------------\n";
         for (Seat seat : seats) {
-            System.out.print(seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n");
-            System.out.println("--------------------------");
+            shema += seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n";
+            shema += "--------------------------\n";
         }
+        return shema;
     }
+
     @Override
     public String toString() {
-        return "";
+        return getClass().getSimpleName() + ", " + price + ", " + travelTime + ", " + destination + ", "
+                + initialLocation + ", " + coefficentOfPrice + ", " + maxSeatCapacity;
     }
 
 }

@@ -13,6 +13,7 @@ public class Bus extends Transit {
 
     @Override
     public void createSeat() {
+        
     }
 
 }

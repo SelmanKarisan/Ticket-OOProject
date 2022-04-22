@@ -17,7 +17,7 @@ public class Airplane extends Transit {
     }
     @Override
     public String toString() {
-        return super.toString();
+        return getClass().getSimpleName() + super.toString();
     }
 
 }   

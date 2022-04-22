@@ -26,13 +26,13 @@ public class Test {
                 String UserName = scanner.next();
                 System.out.println("Şifrenizi giriniz:");
                 String password = scanner.next();
-                if (UserName.equals("admin_marmara") && password.equals("1883")) {
+                if (UserName.equals("admin") && password.equals("1883")) {
                     entry = false;
-                } else if (UserName.equals("admin_marmara") && !password.equals("1883")) {
+                } else if (UserName.equals("admin") && !password.equals("1883")) {
                     System.out.println("Şifreniz yanlış lütfen tekrar deneyiniz");
-                } else if (!UserName.equals("admin_marmara") && password.equals("1883")) {
+                } else if (!UserName.equals("admin") && password.equals("1883")) {
                     System.out.println("Kullanıcı adınız yanlış lütfen tekrar deneyiniz");
-                } else if (!UserName.equals("admin_marmara") && !password.equals("1883")) {
+                } else if (!UserName.equals("admin") && !password.equals("1883")) {
                     System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
                 }
             }
