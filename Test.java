@@ -11,20 +11,31 @@ public class Test {
         // Bilet alma sistemi için
         if (selection == 1) {
             System.out.println("Varış noktası giriniz:(İlk harfini büyük giriniz !!! )");
-            String destinationInput = scanner.next();
+            String destination = scanner.next().toLowerCase();
             System.out.println("Başlangıç noktası giriniz:(İlk harfi büyük giriniz !!!)");
-            String initialLocationInput = scanner.next();
+            String initialLocation = scanner.next().toLowerCase();
             System.out.println("Seyehat etmek istediğiniz aracı seçiniz:\n 1:Tren\n2:Uçak\n3:Otobüs");
-            int SelectionforVehicleInput = scanner.nextInt();
-
+            int SelectionforVehicle = scanner.nextInt();
         }
         // seyehat ekleme sistemi için
         else if (selection == 2) {
-            System.out.println("Kullanıcı adını giriniz:");
-            String UserName = scanner.next();
-            System.out.println("Şifrenizi giriniz:");
-            String password = scanner.next();
-            
+            // kullanıcı doğru giriş yaptığı zaman
+            boolean entry = true;
+            while (entry) {
+                System.out.println("Kullanıcı adını giriniz:");
+                String UserName = scanner.next();
+                System.out.println("Şifrenizi giriniz:");
+                String password = scanner.next();
+                if (UserName.equals("admin_marmara") && password.equals("1883")) {
+                    entry = false;
+                } else if (UserName.equals("admin_marmara") && !password.equals("1883")) {
+                    System.out.println("Şifreniz yanlış lütfen tekrar deneyiniz");
+                } else if (!UserName.equals("admin_marmara") && password.equals("1883")) {
+                    System.out.println("Kullanıcı adınız yanlış lütfen tekrar deneyiniz");
+                } else if (!UserName.equals("admin_marmara") && !password.equals("1883")) {
+                    System.out.println("Kullanıcı adınız ve şifreniz yanlış lütfen tekrar deneyiniz");
+                }
+            }
             System.out.print("Hangi araç için sefer eklemek istiyorsunuz(1, 2 ya da 3'ü tuşlayın)");
             System.out.println("1-Uçak");
             System.out.println("2-Tren");
@@ -32,23 +43,25 @@ public class Test {
             int transitSelection = scanner.nextInt();
             switch (transitSelection) {
                 case 1:
-                    Airplane airplane = new Airplane(price, travelTime, destination, initialLocation, coefficentOfPrice,
-                            maxSeatCapacity);
+                    // Airplane airplane = new Airplane(price, travelTime, destination,
+                    // initialLocation, coefficentOfPrice,
+                    // maxSeatCapacity);
                     break;
                 case 2:
-                    Train train = new Train(price, travelTime, destination, initialLocation, coefficentOfPrice,
-                            maxSeatCapacity);
+                    // Train train = new Train(price, travelTime, destination, initialLocation,
+                    // coefficentOfPrice,
+                    // maxSeatCapacity);
                     break;
                 case 3:
-                    Bus bus = new Bus(price, travelTime, destination, initialLocation, coefficentOfPrice,
-                            maxSeatCapacity);
+                    // Bus bus = new Bus(price, travelTime, destination, initialLocation,
+                    // coefficentOfPrice,
+                    // 2
+                    // maxSeatCapacity);
                     break;
 
                 default:
-                    
                     break;
             }
         }
-
     }
 }
