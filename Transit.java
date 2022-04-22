@@ -10,7 +10,7 @@ public abstract class Transit implements Info {
     private ArrayList<Seat> seats;
 
     public Transit(int price, String travelTime, String destination, String initialLocation, double coefficentOfPrice,
-            int maxSeatCapacity) {
+            int maxSeatCapacity) throws Exception {
         this.price = price;
         setTravelTime(travelTime);
         this.destination = destination;
@@ -55,7 +55,7 @@ public abstract class Transit implements Info {
         this.price = price;
     }
 
-    public String getTravelTime() {
+    public String getTravelTime() throws Exception {
         if (travelTime == 1.5) {
             return "Sabah";
         } else if (travelTime == 2) {
@@ -64,10 +64,12 @@ public abstract class Transit implements Info {
             return "Akşam";
         } else if (travelTime == 3) {
             return "Gece";
+        } else {
+            throw new Exception("bulunamadı!");
         }
     }
 
-    public void setTravelTime(String travelTime) {
+    public void setTravelTime(String travelTime) throws Exception {
         switch (travelTime) {
             case "Sabah":
                 this.travelTime = 1.5;
@@ -82,7 +84,7 @@ public abstract class Transit implements Info {
                 this.travelTime = 3;
                 break;
             default:
-                break;
+                throw new Exception("bulunamadı!");
         }
     }
 
