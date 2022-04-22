@@ -25,7 +25,7 @@ public class Test {
             file = new File("./SeatShema.txt");
             scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-
+                String[] 
             }
         }
         // seyehat ekleme sistemi için
