@@ -4,11 +4,11 @@ public class Airplane extends Transit {
             int maxSeatCapacity) throws Exception {
         super(price, travelTime, destination, initialLocation, coefficentOfPrice, maxSeatCapacity);
         super.generateSeats(maxSeatCapacity);
+        calculatePrice();
     }
 
     @Override
     public void calculatePrice() {
-
     }
 
     @Override
