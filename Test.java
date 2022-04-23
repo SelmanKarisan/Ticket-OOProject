@@ -62,9 +62,13 @@ public class Test {
             int selectionForVehicle = scanner.nextInt();
             file = new File("./SeatShema.txt");
             scanner = new Scanner(file);
+            String fileContent = "";
             while (scanner.hasNextLine()) {
-                String[] 
+                fileContent += scanner.nextLine();
             }
+            System.out.println(fileContent);
+            
+
         }
         // seyehat ekleme sistemi için
         else if (selection == 2) {
