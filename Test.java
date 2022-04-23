@@ -15,38 +15,39 @@ public class Test {
     private static double price;
     private static double coeff;
     private static int maxSeatCapacity;
-    
-    public static void inputForAdmin(){
+
+    public static void inputForAdmin() {
         System.out.println("Varış yerini giriniz:");
-         destination=scanner.next();
+        destination = scanner.next();
         System.out.println("Başlangıç yeri seçiniz:");
-         initialLocation=scanner.next();
+        initialLocation = scanner.next();
         System.out.println("Seyehat edilecek zamanı seçiniz:\n1:Sabah\n2:Öğle\n3:Akşam\n4:Gece");
-         selectionForTravelTime=scanner.nextInt();
+        selectionForTravelTime = scanner.nextInt();
         switch (selectionForTravelTime) {
             case 1:
-            travelTime="Sabah";
-            break;
+                travelTime = "Sabah";
+                break;
             case 2:
-            travelTime="Öğle";
-            break;
+                travelTime = "Öğle";
+                break;
             case 3:
-            travelTime="Akşam";
-            break;
+                travelTime = "Akşam";
+                break;
             case 4:
-            travelTime="Gece"; 
+                travelTime = "Gece";
                 break;
             default:
                 break;
         }
         System.out.println("Seyehat fiyatını giriniz:");
-         price=scanner.nextDouble();
+        price = scanner.nextDouble();
         System.out.println("Seyehat pahalılık katsayısını giriniz:");
-         coeff=scanner.nextDouble();
+        coeff = scanner.nextDouble();
         System.out.println("Maksimum koltuk sayısını giriniz:");
-         maxSeatCapacity=scanner.nextInt();
-                
+        maxSeatCapacity = scanner.nextInt();
+
     }
+
     public static void main(String[] args) throws Exception {
         scanner = new Scanner(System.in);
         System.out.println("Marmara Turizm'e Hoşgeldiniz");
@@ -67,7 +68,6 @@ public class Test {
                 fileContent += scanner.nextLine();
             }
             System.out.println(fileContent);
-            
 
         }
         // seyehat ekleme sistemi için
@@ -98,7 +98,8 @@ public class Test {
             switch (transitSelection) {
                 case 1:
                     inputForAdmin();
-                    Airplane airplane = new Airplane(price, travelTime, destination, initialLocation, coeff, maxSeatCapacity);
+                    Airplane airplane = new Airplane(price, travelTime, destination, initialLocation, coeff,
+                            maxSeatCapacity);
                     file = new File("./TravelPlan.txt");
                     fileWriter = new FileWriter(file, true);
                     fileWriter.write(airplane.toString());
