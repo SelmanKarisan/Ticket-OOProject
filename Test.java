@@ -95,9 +95,6 @@ public class Test {
             System.out.println("2-Tren");
             System.out.println("3-Otobüs");
             int transitSelection = scanner.nextInt();
-
-            
-
             switch (transitSelection) {
                 case 1:
                     inputForAdmin();
@@ -108,11 +105,13 @@ public class Test {
                     fileWriter.write("Airplane" + "\n-----------------" + airplane.shemaOfSeats());
                     break;
                 case 2:
+                    inputForAdmin();
                     // Train train = new Train(price, travelTime, destination, initialLocation,
                     // coefficentOfPrice,
                     // maxSeatCapacity);
                     break;
                 case 3:
+                    inputForAdmin();
                     // Bus bus = new Bus(price, travelTime, destination, initialLocation,
                     // coefficentOfPrice,
                     // 2
