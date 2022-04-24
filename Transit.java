@@ -130,12 +130,13 @@ public abstract class Transit implements Info {
     public void generateSeats() {
         seats = new ArrayList<>();
         char letter = 'A';
-        for (int i = 0; i < seatCapacity; i += 4) {
-            for (int j = 0; j < 4; j++) {
-                String location = String.valueOf(letter) + (j + 1);
-                seats.add(new Seat(location));
+        for (int i = 0, j = 0; j < 4 && i < seatCapacity; i++, j++) {
+            String location = String.valueOf(letter) + (j + 1);
+            seats.add(new Seat(location));
+            if (j == 3) {
+                letter++;
+                j = 0;
             }
-            letter++;
         }
     }
 
