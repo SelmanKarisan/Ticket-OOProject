@@ -1,0 +1,4 @@
+Airplane, 1438.3999999999999, 2.0, adana, ankara, 23.2, 20
+Train, 3105.0, 1.5, istanbul, izmir, 90.0, 30
+Bus, 155.0, 2.5, istanbul, ankara, 2.0, 20
+Bus, 232.5, 2.5, istanbul, 2, 3.0, 2

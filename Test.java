@@ -4,9 +4,11 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+
 public class Test {
     private static Scanner scanner;
-
+    private static ArrayList<String> planContent;
     private final static String adminUsername = "admin";
     private final static String adminPassword = "1883";
 
@@ -19,7 +21,7 @@ public class Test {
             } else if (input.getType().equals(Double.class.getSimpleName())) {
                 input.setValue(scanner.nextDouble());
             } else if (input.getType().equals(Integer.class.getSimpleName())) {
-                input.setValue(scanner.nextInt()); 
+                input.setValue(scanner.nextInt());
             }
         }
         scanner.close();
@@ -71,11 +73,37 @@ public class Test {
                 String destination = scanner.next().toLowerCase();
                 System.out.print("Başlangıç noktası giriniz:");
                 String initialLocation = scanner.next().toLowerCase();
-                System.out.print("Seyehat etmek istediğiniz aracı seçiniz:\n1-Tren\n2-Uçak\n3-Otobüs");
+                System.out.print("Seyehat etmek istediğiniz aracı seçiniz:\n1-Uçak\n2-Tren\n3-Otobüs\n");
                 int selectionForVehicle = scanner.nextInt();
+                String vehicleName;
+                if (selectionForVehicle == 1) {
+                    vehicleName = "Uçak";
+                } else if (selectionForVehicle == 2) {
+                    vehicleName = "Tren";
+                } else if (selectionForVehicle == 3) {
+                    vehicleName = "Otobüs";
+                } else {
+                    throw new Exception("bulunamadı");
+                }
 
-                var fileContent = readFileToArray("./SeatShema.txt");
-                System.out.println(String.join("\n\r", fileContent));
+                scanner = new Scanner(new File("./TravelPlan.txt"));
+                while (scanner.hasNextLine()) {
+                    var line = scanner.nextLine().split(",");
+                    if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
+                        switch (vehicleName) {
+                            case "Uçak":
+                                appendToFile("./SeatSchema.txt", "Uçak" + Airplane.shemaOfSeats() + "\n");
+                                break;
+                            case "Tren":
+                                appendToFile("./SeatSchema.txt", "Tren" + Train.shemaOfSeats() + "\n");
+                                break;
+                            case "Otobüs":
+                                appendToFile("./SeatSchema.txt", "Otobüs" + Bus.shemaOfSeats() + "\n");
+                                break;
+                        }
+                    }
+                }
+                scanner.close();
 
                 break;
             case 2:
@@ -100,24 +128,17 @@ public class Test {
                     case 1:
                         Transit airplane = new Airplane(getInput(Airplane.INPUTS));
                         appendToFile("./TravelPlan.txt", airplane.toString());
-                        appendToFile("./SeatSchema.txt", "Airplane" + airplane.shemaOfSeats() + "\n");
                         break;
                     case 2:
-                        // Train train = new Train(getInput(Train.INPUTS));
-
-                        // Train train = new Train(price, travelTime, destination, initialLocation,
-                        // coefficentOfPrice,
-                        // maxSeatCapacity);
+                        Transit train = new Train(getInput(Train.INPUTS));
+                        appendToFile("./TravelPlan.txt", train.toString());
                         break;
                     case 3:
-                        // inputForAdmin();
-                        // Bus bus = new Bus(price, travelTime, destination, initialLocation,
-                        // coefficentOfPrice,
-                        // 2
-                        // maxSeatCapacity);
+                        Transit bus = new Bus(getInput(Train.INPUTS));
+                        appendToFile("./TravelPlan.txt", bus.toString());
                         break;
                     default:
-                        break;
+                        throw new Exception("bulunamadı!");
                 }
                 break;
             default:
@@ -142,4 +163,5 @@ public class Test {
         fileWriter.write(value + "\n");
         fileWriter.close();
     }
+
 }

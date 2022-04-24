@@ -7,17 +7,8 @@ public abstract class Transit implements Info {
     private String initialLocation;
     private double coefficentOfPrice;
     private int seatCapacity;
-    private ArrayList<Seat> seats;
-
-    public final static GenericInput[] INPUTS = new GenericInput[] {
-            new GenericInput("price", "Enter price: ", Double.class.getSimpleName(), null),
-            new GenericInput("travelTime", "Enter travelTime: ", String.class.getSimpleName(), null),
-            new GenericInput("destination", "Enter destination: ", String.class.getSimpleName(), null),
-            new GenericInput("initialLocation", "Enter initialLocation: ", String.class.getSimpleName(), null),
-            new GenericInput("coefficentOfPrice", "Enter coefficentOfPrice: ", Double.class.getSimpleName(), null),
-            new GenericInput("seatCapacity", "Enter seatCapacity: ", Integer.class.getSimpleName(), null)
-    };
-
+    private static ArrayList<Seat> seats;
+    
     public Transit(GenericInput[] inputs) throws Exception {
         for (GenericInput input : inputs) {
             switch (input.getProperyName()) {
@@ -25,7 +16,7 @@ public abstract class Transit implements Info {
                     this.price = (double) input.getValue();
                     break;
                 case "travelTime":
-                    setTravelTime((String) input.getValue());
+                    setTravelTime((int) input.getValue());
                     break;
                 case "destination":
                     this.destination = (String) input.getValue();
@@ -44,7 +35,7 @@ public abstract class Transit implements Info {
         }
     }
 
-    public Transit(double price, String travelTime, String destination, String initialLocation,
+    public Transit(double price, int travelTime, String destination, String initialLocation,
             double coefficentOfPrice,
             int seatCapacity) throws Exception {
         this.price = price;
@@ -106,18 +97,18 @@ public abstract class Transit implements Info {
         }
     }
 
-    public void setTravelTime(String travelTime) throws Exception {
+    public void setTravelTime(int travelTime) throws Exception {
         switch (travelTime) {
-            case "Sabah":
+            case 1:
                 this.travelTime = 1.5;
                 break;
-            case "Öğle":
+            case 2:
                 this.travelTime = 2;
                 break;
-            case "Akşam":
+            case 3:
                 this.travelTime = 2.5;
                 break;
-            case "Gece":
+            case 4:
                 this.travelTime = 3;
                 break;
             default:
@@ -153,7 +144,7 @@ public abstract class Transit implements Info {
         }
     }
 
-    public String shemaOfSeats() {
+    public static String shemaOfSeats() {
         String shema = "\n--------------------------\n";
         for (Seat seat : seats) {
             shema += seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n";
