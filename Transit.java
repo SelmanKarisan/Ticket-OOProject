@@ -8,13 +8,10 @@ public abstract class Transit implements Info {
     private double coefficentOfPrice;
     private int seatCapacity;
     private static ArrayList<Seat> seats;
-    
+
     public Transit(GenericInput[] inputs) throws Exception {
         for (GenericInput input : inputs) {
             switch (input.getProperyName()) {
-                case "price":
-                    this.price = (double) input.getValue();
-                    break;
                 case "travelTime":
                     setTravelTime((int) input.getValue());
                     break;
@@ -35,10 +32,8 @@ public abstract class Transit implements Info {
         }
     }
 
-    public Transit(double price, int travelTime, String destination, String initialLocation,
-            double coefficentOfPrice,
+    public Transit(int travelTime, String destination, String initialLocation, double coefficentOfPrice,
             int seatCapacity) throws Exception {
-        this.price = price;
         setTravelTime(travelTime);
         this.destination = destination;
         this.initialLocation = initialLocation;
@@ -60,7 +55,7 @@ public abstract class Transit implements Info {
     }
 
     public void setSeats(ArrayList<Seat> seats) {
-        this.seats = seats;
+        Transit.seats = seats;
     }
 
     public double getCoefficentOfPrice() {
@@ -87,9 +82,9 @@ public abstract class Transit implements Info {
         if (travelTime == 1.5) {
             return "Sabah";
         } else if (travelTime == 2) {
-            return "Öğle";
+            return "Ogle";
         } else if (travelTime == 2.5) {
-            return "Akşam";
+            return "Aksam";
         } else if (travelTime == 3) {
             return "Gece";
         } else {
@@ -154,8 +149,12 @@ public abstract class Transit implements Info {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ", " + price + ", " + travelTime + ", " + destination + ", "
-                + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity;
+        try {
+            return getClass().getSimpleName() + ", " + ((int) (100 * price) / 100.0) + ", " + getTravelTime() + ", "
+                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity;
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 }

@@ -1,14 +1,9 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
 
 public class Test {
     private static Scanner scanner;
-    private static ArrayList<String> planContent;
     private final static String adminUsername = "admin";
     private final static String adminPassword = "1883";
 
@@ -26,39 +21,6 @@ public class Test {
         }
         scanner.close();
         return inputs;
-
-        // System.out.print("Varış yerini giriniz:");
-        // var destination = scanner.next();
-        // System.out.print("Başlangıç yeri seçiniz:");
-        // var initialLocation = scanner.next();
-        // System.out.println("Seyehat edilecek zamanı
-        // seçiniz\n1-Sabah\n2-Öğle\n3-Akşam\n4-Gece");
-        // var selectionForTravelTime = scanner.nextInt();
-        // String travelTime;
-        // switch (selectionForTravelTime) {
-        // case 1:
-        // travelTime = "Sabah";
-        // break;
-        // case 2:
-        // travelTime = "Öğle";
-        // break;
-        // case 3:
-        // travelTime = "Akşam";
-        // break;
-        // case 4:
-        // travelTime = "Gece";
-        // break;
-        // default:
-        // throw new IllegalArgumentException("Seyehat edilecek zamanı yanlış girildi");
-        // }
-        // System.out.print("Seyehat fiyatını giriniz:");
-        // var price = scanner.nextDouble();
-        // System.out.print("Seyehat pahalılık katsayısını giriniz:");
-        // var coeff = scanner.nextDouble();
-        // System.out.print("Maksimum koltuk sayısını giriniz:");
-        // var maxSeatCapacity = scanner.nextInt();
-        // return new AdminInput(destination, initialLocation, travelTime, price, coeff,
-        // maxSeatCapacity);
     }
 
     public static void main(String[] args) throws Exception {
@@ -76,30 +38,47 @@ public class Test {
                 System.out.print("Seyehat etmek istediğiniz aracı seçiniz:\n1-Uçak\n2-Tren\n3-Otobüs\n");
                 int selectionForVehicle = scanner.nextInt();
                 String vehicleName;
-                if (selectionForVehicle == 1) {
-                    vehicleName = "Uçak";
-                } else if (selectionForVehicle == 2) {
-                    vehicleName = "Tren";
-                } else if (selectionForVehicle == 3) {
-                    vehicleName = "Otobüs";
-                } else {
-                    throw new Exception("bulunamadı");
+                switch (selectionForVehicle) {
+                    case 1:
+                        vehicleName = "Airplane";
+                        break;
+                    case 2:
+                        vehicleName = "Train";
+                        break;
+                    case 3:
+                        vehicleName = "Bus";
+                        break;
+                    default:
+                        throw new Exception("bulunamadı");
                 }
-
+                int counter = 0;
                 scanner = new Scanner(new File("./TravelPlan.txt"));
+                readFileAndCreateObject("./TravelPlan.txt");
                 while (scanner.hasNextLine()) {
-                    var line = scanner.nextLine().split(",");
+                    var line = scanner.nextLine().split(", ");
                     if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
                         switch (vehicleName) {
-                            case "Uçak":
-                                appendToFile("./SeatSchema.txt", "Uçak" + Airplane.shemaOfSeats() + "\n");
+                            case "Airplane": {
+                                counter++;
+                                appendToFile("./SeatSchema.txt",
+                                        "Uçak, Ucret: " + line[1] + Airplane.shemaOfSeats() + "\n",
+                                        (counter > 1) ? true : false);
                                 break;
-                            case "Tren":
-                                appendToFile("./SeatSchema.txt", "Tren" + Train.shemaOfSeats() + "\n");
+                            }
+                            case "Train": {
+                                appendToFile("./SeatSchema.txt",
+                                        "Tren, Ucret: " + line[1] + Train.shemaOfSeats() + "\n",
+                                        (counter > 1) ? true : false);
                                 break;
-                            case "Otobüs":
-                                appendToFile("./SeatSchema.txt", "Otobüs" + Bus.shemaOfSeats() + "\n");
+                            }
+
+                            case "Bus": {
+                                appendToFile("./SeatSchema.txt",
+                                        "Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n",
+                                        (counter > 1) ? true : false);
                                 break;
+                            }
+
                         }
                     }
                 }
@@ -127,15 +106,15 @@ public class Test {
                 switch (transitSelection) {
                     case 1:
                         Transit airplane = new Airplane(getInput(Airplane.INPUTS));
-                        appendToFile("./TravelPlan.txt", airplane.toString());
+                        appendToFile("./TravelPlan.txt", airplane.toString(), true);
                         break;
                     case 2:
                         Transit train = new Train(getInput(Train.INPUTS));
-                        appendToFile("./TravelPlan.txt", train.toString());
+                        appendToFile("./TravelPlan.txt", train.toString(), true);
                         break;
                     case 3:
                         Transit bus = new Bus(getInput(Train.INPUTS));
-                        appendToFile("./TravelPlan.txt", bus.toString());
+                        appendToFile("./TravelPlan.txt", bus.toString(), true);
                         break;
                     default:
                         throw new Exception("bulunamadı!");
@@ -146,22 +125,48 @@ public class Test {
         }
     }
 
-    private static ArrayList<String> readFileToArray(String filePath) throws FileNotFoundException {
+    private static void readFileAndCreateObject(String filePath) throws Exception {
+
         var file = new File(filePath);
         var scanner = new Scanner(file);
-        var fileContent = new ArrayList<String>();
+
         while (scanner.hasNextLine()) {
-            fileContent.add(scanner.nextLine());
+            int timeSelection = 0;
+
+            var line = scanner.nextLine().split(", ");
+            if (line[2].equals("Sabah")) {
+                timeSelection = 1;
+            }
+            if (line[2].equals("Ogle")) {
+                timeSelection = 2;
+            }
+            if (line[2].equals("Aksam")) {
+                timeSelection = 3;
+            }
+            if (line[2].equals("Gece")) {
+                timeSelection = 4;
+            }
+            switch (line[0]) {
+                case "Airplane":
+                    new Airplane(timeSelection, line[3], line[4], Double.parseDouble(line[5]),
+                            Integer.parseInt(line[6]));
+                    break;
+                case "Train":
+                    new Train(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]));
+                    break;
+                case "Bus":
+                    new Bus(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]));
+                    break;
+            }
         }
         scanner.close();
-        return fileContent;
+
     }
 
-    private static void appendToFile(String filePath, String value) throws Exception {
+    private static void appendToFile(String filePath, String value, boolean append) throws Exception {
         var file = new File(filePath);
-        var fileWriter = new FileWriter(file, true);
+        var fileWriter = new FileWriter(file, append);
         fileWriter.write(value + "\n");
         fileWriter.close();
     }
-
 }

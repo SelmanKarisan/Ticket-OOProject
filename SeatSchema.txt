@@ -1,0 +1,72 @@
+Uçak
+--------------------------
+A1 Status: Free
+A2 Status: Free
+A3 Status: Free
+A4 Status: Free
+B1 Status: Free
+B2 Status: Free
+B3 Status: Free
+B4 Status: Free
+C1 Status: Free
+C2 Status: Free
+C3 Status: Free
+C4 Status: Free
+D1 Status: Free
+D2 Status: Free
+D3 Status: Free
+D4 Status: Free
+E1 Status: Free
+E2 Status: Free
+E3 Status: Free
+E4 Status: Free
+F1 Status: Free
+F2 Status: Free
+F3 Status: Free
+F4 Status: Free
+G1 Status: Free
+G2 Status: Free
+G3 Status: Free
+G4 Status: Free
+H1 Status: Free
+H2 Status: Free
+H3 Status: Free
+H4 Status: Free
+
+
+Uçak
+--------------------------
+A1 Status: Free
+A2 Status: Free
+A3 Status: Free
+A4 Status: Free
+B1 Status: Free
+B2 Status: Free
+B3 Status: Free
+B4 Status: Free
+C1 Status: Free
+C2 Status: Free
+C3 Status: Free
+C4 Status: Free
+D1 Status: Free
+D2 Status: Free
+D3 Status: Free
+D4 Status: Free
+E1 Status: Free
+E2 Status: Free
+E3 Status: Free
+E4 Status: Free
+F1 Status: Free
+F2 Status: Free
+F3 Status: Free
+F4 Status: Free
+G1 Status: Free
+G2 Status: Free
+G3 Status: Free
+G4 Status: Free
+H1 Status: Free
+H2 Status: Free
+H3 Status: Free
+H4 Status: Free
+
+
