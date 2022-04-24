@@ -1,3 +1,0 @@
-Airplane, 2604.0, 2.0, istanbul, almanya, 42.0, 20
-Airplane, 20825.0, 2.5, 45, istanbul, 245.0, 24
-Airplane, 8487.0, 3.0, ankara, ad?yaman, 123.0, 10
