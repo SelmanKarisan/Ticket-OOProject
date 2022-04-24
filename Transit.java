@@ -6,29 +6,62 @@ public abstract class Transit implements Info {
     private String destination;
     private String initialLocation;
     private double coefficentOfPrice;
-    private int maxSeatCapacity;
+    private int seatCapacity;
     private ArrayList<Seat> seats;
 
-    public Transit(double price, String travelTime2, String destination, String initialLocation, double coefficentOfPrice,
-            int maxSeatCapacity) throws Exception {
+    public final static GenericInput[] INPUTS = new GenericInput[] {
+            new GenericInput("price", "Enter price: ", Double.class.getSimpleName(), null),
+            new GenericInput("travelTime", "Enter travelTime: ", String.class.getSimpleName(), null),
+            new GenericInput("destination", "Enter destination: ", String.class.getSimpleName(), null),
+            new GenericInput("initialLocation", "Enter initialLocation: ", String.class.getSimpleName(), null),
+            new GenericInput("coefficentOfPrice", "Enter coefficentOfPrice: ", Double.class.getSimpleName(), null),
+            new GenericInput("seatCapacity", "Enter seatCapacity: ", Integer.class.getSimpleName(), null)
+    };
+
+    public Transit(GenericInput[] inputs) throws Exception {
+        for (GenericInput input : inputs) {
+            switch (input.getProperyName()) {
+                case "price":
+                    this.price = (double) input.getValue();
+                    break;
+                case "travelTime":
+                    setTravelTime((String) input.getValue());
+                    break;
+                case "destination":
+                    this.destination = (String) input.getValue();
+                    break;
+                case "initialLocation":
+                    this.initialLocation = (String) input.getValue();
+                    break;
+                case "coefficentOfPrice":
+                    this.coefficentOfPrice = (double) input.getValue();
+                    break;
+                case "seatCapacity":
+                    this.seatCapacity = (int) input.getValue();
+                    break;
+            }
+            generateSeats();
+        }
+    }
+
+    public Transit(double price, String travelTime, String destination, String initialLocation,
+            double coefficentOfPrice,
+            int seatCapacity) throws Exception {
         this.price = price;
-        setTravelTime(travelTime2);
+        setTravelTime(travelTime);
         this.destination = destination;
         this.initialLocation = initialLocation;
         this.coefficentOfPrice = coefficentOfPrice;
-        this.maxSeatCapacity = maxSeatCapacity;
-        seats = new ArrayList<>();
-        generateSeats(20);
-        // priint();
-
+        this.seatCapacity = seatCapacity;
+        generateSeats();
     }
 
-    public int getMaxSeatCapacity() {
-        return maxSeatCapacity;
+    public int getseatCapacity() {
+        return seatCapacity;
     }
 
-    public void setMaxSeatCapacity(int maxSeatCapacity) {
-        this.maxSeatCapacity = maxSeatCapacity;
+    public void setseatCapacity(int seatCapacity) {
+        this.seatCapacity = seatCapacity;
     }
 
     public ArrayList<Seat> getSeats() {
@@ -54,9 +87,11 @@ public abstract class Transit implements Info {
     public void setPrice(double price) {
         this.price = price;
     }
-    public double getTravelTimeValue(){
+
+    public double getTravelTimeValue() {
         return this.travelTime;
     }
+
     public String getTravelTime() throws Exception {
         if (travelTime == 1.5) {
             return "Sabah";
@@ -106,20 +141,20 @@ public abstract class Transit implements Info {
         this.initialLocation = initialLocation;
     }
 
-    public ArrayList<Seat> generateSeats(int maxSeatCapacity) {
+    public void generateSeats() {
+        seats = new ArrayList<>();
         char letter = 'A';
-        for (int i = 0; i < maxSeatCapacity; i += 4) {
+        for (int i = 0; i < seatCapacity; i += 4) {
             for (int j = 0; j < 4; j++) {
                 String location = String.valueOf(letter) + (j + 1);
                 seats.add(new Seat(location));
             }
             letter++;
         }
-        return seats;
     }
 
     public String shemaOfSeats() {
-        String shema = "--------------------------\n";
+        String shema = "\n--------------------------\n";
         for (Seat seat : seats) {
             shema += seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n";
         }
@@ -129,7 +164,7 @@ public abstract class Transit implements Info {
     @Override
     public String toString() {
         return getClass().getSimpleName() + ", " + price + ", " + travelTime + ", " + destination + ", "
-                + initialLocation + ", " + coefficentOfPrice + ", " + maxSeatCapacity;
+                + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity;
     }
 
 }
