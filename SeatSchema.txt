@@ -1,0 +1,211 @@
+Airplane
+-------------------------------------------
+A1 Status: Free
+--------------------------
+A2 Status: Free
+--------------------------
+A3 Status: Free
+--------------------------
+A4 Status: Free
+--------------------------
+B1 Status: Free
+--------------------------
+B2 Status: Free
+--------------------------
+B3 Status: Free
+--------------------------
+B4 Status: Free
+--------------------------
+C1 Status: Free
+--------------------------
+C2 Status: Free
+--------------------------
+C3 Status: Free
+--------------------------
+C4 Status: Free
+--------------------------
+D1 Status: Free
+--------------------------
+D2 Status: Free
+--------------------------
+D3 Status: Free
+--------------------------
+D4 Status: Free
+--------------------------
+E1 Status: Free
+--------------------------
+E2 Status: Free
+--------------------------
+E3 Status: Free
+--------------------------
+E4 Status: Free
+--------------------------
+A1 Status: Free
+--------------------------
+A2 Status: Free
+--------------------------
+A3 Status: Free
+--------------------------
+A4 Status: Free
+--------------------------
+B1 Status: Free
+--------------------------
+B2 Status: Free
+--------------------------
+B3 Status: Free
+--------------------------
+B4 Status: Free
+--------------------------
+C1 Status: Free
+--------------------------
+C2 Status: Free
+--------------------------
+C3 Status: Free
+--------------------------
+C4 Status: Free
+--------------------------
+D1 Status: Free
+--------------------------
+D2 Status: Free
+--------------------------
+D3 Status: Free
+--------------------------
+D4 Status: Free
+--------------------------
+E1 Status: Free
+--------------------------
+E2 Status: Free
+--------------------------
+E3 Status: Free
+--------------------------
+E4 Status: Free
+--------------------------
+
+
+Airplane
+-------------------------------------------
+A1 Status: Free
+--------------------------
+A2 Status: Free
+--------------------------
+A3 Status: Free
+--------------------------
+A4 Status: Free
+--------------------------
+B1 Status: Free
+--------------------------
+B2 Status: Free
+--------------------------
+B3 Status: Free
+--------------------------
+B4 Status: Free
+--------------------------
+C1 Status: Free
+--------------------------
+C2 Status: Free
+--------------------------
+C3 Status: Free
+--------------------------
+C4 Status: Free
+--------------------------
+D1 Status: Free
+--------------------------
+D2 Status: Free
+--------------------------
+D3 Status: Free
+--------------------------
+D4 Status: Free
+--------------------------
+E1 Status: Free
+--------------------------
+E2 Status: Free
+--------------------------
+E3 Status: Free
+--------------------------
+E4 Status: Free
+--------------------------
+A1 Status: Free
+--------------------------
+A2 Status: Free
+--------------------------
+A3 Status: Free
+--------------------------
+A4 Status: Free
+--------------------------
+B1 Status: Free
+--------------------------
+B2 Status: Free
+--------------------------
+B3 Status: Free
+--------------------------
+B4 Status: Free
+--------------------------
+C1 Status: Free
+--------------------------
+C2 Status: Free
+--------------------------
+C3 Status: Free
+--------------------------
+C4 Status: Free
+--------------------------
+D1 Status: Free
+--------------------------
+D2 Status: Free
+--------------------------
+D3 Status: Free
+--------------------------
+D4 Status: Free
+--------------------------
+E1 Status: Free
+--------------------------
+E2 Status: Free
+--------------------------
+E3 Status: Free
+--------------------------
+E4 Status: Free
+--------------------------
+F1 Status: Free
+--------------------------
+F2 Status: Free
+--------------------------
+F3 Status: Free
+--------------------------
+F4 Status: Free
+--------------------------
+
+
+Airplane--------------------------
+A1 Status: Free
+A2 Status: Free
+A3 Status: Free
+A4 Status: Free
+B1 Status: Free
+B2 Status: Free
+B3 Status: Free
+B4 Status: Free
+C1 Status: Free
+C2 Status: Free
+C3 Status: Free
+C4 Status: Free
+D1 Status: Free
+D2 Status: Free
+D3 Status: Free
+D4 Status: Free
+E1 Status: Free
+E2 Status: Free
+E3 Status: Free
+E4 Status: Free
+A1 Status: Free
+A2 Status: Free
+A3 Status: Free
+A4 Status: Free
+B1 Status: Free
+B2 Status: Free
+B3 Status: Free
+B4 Status: Free
+C1 Status: Free
+C2 Status: Free
+C3 Status: Free
+C4 Status: Free
+
+

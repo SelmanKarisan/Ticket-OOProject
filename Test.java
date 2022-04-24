@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,11 +18,11 @@ public class Test {
     private static int maxSeatCapacity;
 
     public static void inputForAdmin() {
-        System.out.println("Varış yerini giriniz:");
+        System.out.print("Varış yerini giriniz:");
         destination = scanner.next();
-        System.out.println("Başlangıç yeri seçiniz:");
+        System.out.print("Başlangıç yeri seçiniz:");
         initialLocation = scanner.next();
-        System.out.println("Seyehat edilecek zamanı seçiniz:\n1:Sabah\n2:Öğle\n3:Akşam\n4:Gece");
+        System.out.println("Seyehat edilecek zamanı seçiniz\n1-Sabah\n2-Öğle\n3-Akşam\n4-Gece");
         selectionForTravelTime = scanner.nextInt();
         switch (selectionForTravelTime) {
             case 1:
@@ -39,11 +40,11 @@ public class Test {
             default:
                 break;
         }
-        System.out.println("Seyehat fiyatını giriniz:");
+        System.out.print("Seyehat fiyatını giriniz:");
         price = scanner.nextDouble();
-        System.out.println("Seyehat pahalılık katsayısını giriniz:");
+        System.out.print("Seyehat pahalılık katsayısını giriniz:");
         coeff = scanner.nextDouble();
-        System.out.println("Maksimum koltuk sayısını giriniz:");
+        System.out.print("Maksimum koltuk sayısını giriniz:");
         maxSeatCapacity = scanner.nextInt();
 
     }
@@ -51,15 +52,15 @@ public class Test {
     public static void main(String[] args) throws Exception {
         scanner = new Scanner(System.in);
         System.out.println("Marmara Turizm'e Hoşgeldiniz");
-        System.out.println("Bilet almak için: 1 \n Seyehat oluşturmak için: 2 ");
+        System.out.println("Bilet almak için: 1\nSeyehat oluşturmak için: 2 ");
         int selection = scanner.nextInt();
         // Bilet alma sistemi için
         if (selection == 1) {
-            System.out.println("Varış noktası giriniz:(İlk harfini büyük giriniz !!! )");
+            System.out.print("Varış noktası giriniz:(İlk harfini büyük giriniz !!!):");
             String destination = scanner.next().toLowerCase();
-            System.out.println("Başlangıç noktası giriniz:(İlk harfi büyük giriniz !!!)");
+            System.out.print("Başlangıç noktası giriniz:(İlk harfi büyük giriniz !!!):");
             String initialLocation = scanner.next().toLowerCase();
-            System.out.println("Seyehat etmek istediğiniz aracı seçiniz:\n 1:Tren\n2:Uçak\n3:Otobüs");
+            System.out.print("Seyehat etmek istediğiniz aracı seçiniz:\n1-Tren\n2-Uçak\n3-Otobüs");
             int selectionForVehicle = scanner.nextInt();
             file = new File("./SeatShema.txt");
             scanner = new Scanner(file);
@@ -75,9 +76,9 @@ public class Test {
             // kullanıcı doğru giriş yaptığı zaman
             boolean entry = true;
             while (entry) {
-                System.out.println("Kullanıcı adını giriniz:");
+                System.out.print("Kullanıcı adını giriniz:");
                 String userName = scanner.next();
-                System.out.println("Şifrenizi giriniz:");
+                System.out.print("Şifrenizi giriniz:");
                 String password = scanner.next();
                 if (userName.equals("admin") && password.equals("1883")) {
                     entry = false;
@@ -90,10 +91,7 @@ public class Test {
                 }
             }
             // Kullancı girişi sonrası
-            System.out.print("Hangi araç için sefer eklemek istiyorsunuz(1, 2 ya da 3'ü tuşlayın)");
-            System.out.println("1-Uçak");
-            System.out.println("2-Tren");
-            System.out.println("3-Otobüs");
+            System.out.println("Hangi araç için sefer eklemek istiyorsunuz\n1-Uçak\n2-Tren\n3-Otobüs");
             int transitSelection = scanner.nextInt();
             switch (transitSelection) {
                 case 1:
@@ -102,8 +100,13 @@ public class Test {
                             maxSeatCapacity);
                     file = new File("./TravelPlan.txt");
                     fileWriter = new FileWriter(file, true);
-                    fileWriter.write(airplane.toString());
-                    fileWriter.write("Airplane" + "\n-----------------" + airplane.shemaOfSeats());
+                    fileWriter.write(airplane.toString() + "\n");
+                    fileWriter.close();
+
+                    file = new File("./SeatSchema.txt");
+                    fileWriter = new FileWriter(file, true);
+                    fileWriter.write("Airplane" + airplane.shemaOfSeats() + "\n\n");
+                    fileWriter.close();
                     break;
                 case 2:
                     inputForAdmin();

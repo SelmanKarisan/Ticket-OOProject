@@ -122,7 +122,6 @@ public abstract class Transit implements Info {
         String shema = "--------------------------\n";
         for (Seat seat : seats) {
             shema += seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n";
-            shema += "--------------------------\n";
         }
         return shema;
     }
