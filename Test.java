@@ -98,7 +98,7 @@ public class Test {
                 int transitSelection = scanner.nextInt();
                 switch (transitSelection) {
                     case 1:
-                        Info airplane = new Airplane(getInput(Airplane.INPUTS));
+                        Transit airplane = new Airplane(getInput(Airplane.INPUTS));
                         appendToFile("./TravelPlan.txt", airplane.toString());
                         appendToFile("./SeatSchema.txt", "Airplane" + airplane.shemaOfSeats() + "\n");
                         break;
