@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Train extends Transit {
 
     public final static GenericInput[] INPUTS = new GenericInput[] {
@@ -15,8 +17,8 @@ public class Train extends Transit {
     }
 
     public Train(int travelTime, String destination, String initialLocation, double coefficentOfPrice,
-            int seatCapacity) throws Exception {
-        super(travelTime, destination, initialLocation, coefficentOfPrice, seatCapacity);
+            int seatCapacity, ArrayList<Boolean> updatedSeatStatus) throws Exception {
+        super(travelTime, destination, initialLocation, coefficentOfPrice, seatCapacity, updatedSeatStatus);
         super.generateSeats();
         calculatePrice();
     }

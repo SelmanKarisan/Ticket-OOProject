@@ -52,7 +52,7 @@ public class Test {
                     default:
                         throw new Exception("bulunamadı");
                 }
-                int counter = 0;
+
                 scanner = new Scanner(new File("./TravelPlan.txt"));
                 readFileAndCreateObject("./TravelPlan.txt");
                 while (scanner.hasNextLine()) {
@@ -60,39 +60,48 @@ public class Test {
                     if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
                         switch (vehicleName) {
                             case "Airplane": {
-                                counter++;
-                                appendToFile("./SeatSchema.txt",
-                                        "Uçak, Ucret: " + line[1] + Airplane.shemaOfSeats() + "\n",
-                                        (counter > 1) ? true : false);
+                                System.out.println("Uçak, Ucret: " + line[1] + Airplane.shemaOfSeats() + "\n");
                                 break;
                             }
                             case "Train": {
-                                appendToFile("./SeatSchema.txt",
-                                        "Tren, Ucret: " + line[1] + Train.shemaOfSeats() + "\n",
-                                        (counter > 1) ? true : false);
+                                System.out.println("Tren, Ucret: " + line[1] + Train.shemaOfSeats() + "\n");
                                 break;
                             }
-
                             case "Bus": {
                                 System.out.println("Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n");
                                 break;
                             }
-
                         }
                     }
                 }
+                scanner.close();
 
-                System.out.print("Varış noktası giriniz:");
+                scanner = new Scanner(System.in);
+                System.out.print("Koltuk seçiniz:");
                 String seatNumber = scanner.next().toUpperCase();
                 int counterForSeatNumber = 0;
+                //finding place
                 for (int i = 2; scanner.hasNextLine(); i++) {
                     counterForSeatNumber++;
                     String[] seatLine = scanner.nextLine().split(" ");
-                    if (!seatLine[2].equals("Occupied") && seatNumber.equals(seatLine[0])) {
-                        seatLine[2] = "Occupied";
+                    if (seatLine[2].equals("Free") && seatNumber.equals(seatLine[0])) {
+                        break;
                     }
                 }
+                scanner.close();
+
                 updateSeatStatus(counterForSeatNumber);
+                scanner = new Scanner(new File("./TravelPlan.txt"));
+                String lines = "";
+                while (scanner.hasNextLine()) {
+                    lines += scanner.nextLine();
+                    if (vehicleName.equals(scanner.nextLine().split(", ")[0])
+                            && destination.equals(scanner.nextLine().split(", ")[3])
+                            && initialLocation.equals(scanner.nextLine().split(", ")[4])) {
+                        scanner.nextLine().split(", ")[6 + counterForSeatNumber] = "false";
+                    }
+                }
+                writeToFile("./TravelPlan.txt", lines, false);
                 scanner.close();
                 break;
             case 2:
@@ -116,15 +125,15 @@ public class Test {
                 switch (transitSelection) {
                     case 1:
                         Transit airplane = new Airplane(getInput(Airplane.INPUTS));
-                        appendToFile("./TravelPlan.txt", airplane.toString(), true);
+                        writeToFile("./TravelPlan.txt", airplane.toString(), true);
                         break;
                     case 2:
                         Transit train = new Train(getInput(Train.INPUTS));
-                        appendToFile("./TravelPlan.txt", train.toString(), true);
+                        writeToFile("./TravelPlan.txt", train.toString(), true);
                         break;
                     case 3:
                         Transit bus = new Bus(getInput(Bus.INPUTS));
-                        appendToFile("./TravelPlan.txt", bus.toString(), true);
+                        writeToFile("./TravelPlan.txt", bus.toString(), true);
                         break;
                     default:
                         throw new Exception("bulunamadı!");
@@ -136,13 +145,11 @@ public class Test {
     }
 
     private static void readFileAndCreateObject(String filePath) throws Exception {
-
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
             int timeSelection = 0;
-
             String[] line = scanner.nextLine().split(", ");
             if (line[2].equals("Sabah")) {
                 timeSelection = 1;
@@ -156,16 +163,25 @@ public class Test {
             if (line[2].equals("Gece")) {
                 timeSelection = 4;
             }
+            ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
+            for (int i = 7; i < line.length; i++) {
+                if (line[i].equals("true")) {
+                    updatedSeatStatus.add(true);
+                } else {
+                    updatedSeatStatus.add(false);
+                } 
+
+            }
             switch (line[0]) {
                 case "Airplane":
                     new Airplane(timeSelection, line[3], line[4], Double.parseDouble(line[5]),
-                            Integer.parseInt(line[6]));
+                            Integer.parseInt(line[6]),updatedSeatStatus);
                     break;
                 case "Train":
-                    new Train(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]));
+                    new Train(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),updatedSeatStatus);
                     break;
                 case "Bus":
-                    new Bus(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]));
+                    new Bus(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),updatedSeatStatus);
                     break;
             }
         }
@@ -182,7 +198,7 @@ public class Test {
         return updatedSeatStatus;
     }
 
-    private static void appendToFile(String filePath, String value, boolean append) throws Exception {
+    private static void writeToFile(String filePath, String value, boolean append) throws Exception {
         File file = new File(filePath);
         FileWriter fileWriter = new FileWriter(file, append);
         fileWriter.write(value + "\n");

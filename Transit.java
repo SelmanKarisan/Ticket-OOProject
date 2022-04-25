@@ -8,6 +8,7 @@ public abstract class Transit implements Info {
     private double coefficentOfPrice;
     private int seatCapacity;
     public static ArrayList<Seat> seats;
+    private ArrayList<Boolean> updatedSeatStatus;
 
     public Transit(GenericInput[] inputs) throws Exception {
         for (GenericInput input : inputs) {
@@ -32,13 +33,23 @@ public abstract class Transit implements Info {
         }
     }
 
+    public ArrayList<Boolean> getUpdatedSeatStatus() {
+        return updatedSeatStatus;
+    }
+
+    public void setUpdatedSeatStatus(ArrayList<Boolean> updatedSeatStatus) {
+        this.updatedSeatStatus = updatedSeatStatus;
+    }
+
     public Transit(int travelTime, String destination, String initialLocation, double coefficentOfPrice,
-            int seatCapacity) throws Exception {
+            int seatCapacity, ArrayList<Boolean> updatedSeatStatus) throws Exception {
         setTravelTime(travelTime);
         this.destination = destination;
         this.initialLocation = initialLocation;
         this.coefficentOfPrice = coefficentOfPrice;
         this.seatCapacity = seatCapacity;
+        this.updatedSeatStatus = updatedSeatStatus;
+
         generateSeats();
     }
 
@@ -137,6 +148,9 @@ public abstract class Transit implements Info {
                 letter++;
                 j = -1;
             }
+        }
+        for (int i = 0; i < seats.size(); i++) {
+            seats.get(i).setIsEmpty(updatedSeatStatus.get(i)); 
         }
     }
 

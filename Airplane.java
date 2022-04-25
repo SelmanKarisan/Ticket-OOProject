@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Airplane extends Transit {
     public final static GenericInput[] INPUTS = new GenericInput[] {
             new GenericInput("travelTime", "Yolculuk zamanını seçin\n1-Sabah\n2-Öğle\n3-Akşam\n4-Gece\n",Integer.class.getSimpleName(), null),
@@ -13,8 +15,8 @@ public class Airplane extends Transit {
     }
 
     public Airplane(int travelTime, String destination, String initialLocation,
-            double coefficentOfPrice, int seatCapacity) throws Exception {
-        super(travelTime, destination, initialLocation, coefficentOfPrice, seatCapacity);
+            double coefficentOfPrice,int seatCapacity, ArrayList<Boolean> updatedSeatStatus) throws Exception {
+        super(travelTime, destination, initialLocation, coefficentOfPrice,seatCapacity ,updatedSeatStatus);
         calculatePrice();
     }
 
