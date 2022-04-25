@@ -149,8 +149,11 @@ public abstract class Transit implements Info {
                 j = -1;
             }
         }
-        for (int i = 0; i < seats.size(); i++) {
-            seats.get(i).setIsEmpty(updatedSeatStatus.get(i)); 
+
+        if (updatedSeatStatus != null) {
+            for (int i = 0; i < seats.size(); i++) {
+                seats.get(i).setIsEmpty(updatedSeatStatus.get(i));
+            }
         }
     }
 
@@ -170,7 +173,8 @@ public abstract class Transit implements Info {
                 allSeatsStatus += seat.getIsEmpty() + ", ";
             }
             return getClass().getSimpleName() + ", " + ((int) (100 * price) / 100.0) + ", " + getTravelTime() + ", "
-                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + allSeatsStatus;
+                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity + ", "
+                    + allSeatsStatus + "\n";
         } catch (Exception e) {
             return "";
         }

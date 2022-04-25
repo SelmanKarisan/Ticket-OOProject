@@ -1,1 +1,1 @@
-Train, 30.0, Aksam, izmir, ankara, 12.0, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 
+Airplane, 18.0, Sabah, ankara, izmir, 12.0, 12, true, true, true, true, true, true, true, true, true, true, true, true, 
