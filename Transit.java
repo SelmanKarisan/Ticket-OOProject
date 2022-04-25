@@ -7,7 +7,7 @@ public abstract class Transit implements Info {
     private String initialLocation;
     private double coefficentOfPrice;
     private int seatCapacity;
-    private static ArrayList<Seat> seats;
+    public static ArrayList<Seat> seats;
 
     public Transit(GenericInput[] inputs) throws Exception {
         for (GenericInput input : inputs) {
@@ -135,7 +135,7 @@ public abstract class Transit implements Info {
             seats.add(new Seat(location));
             if (j == 3) {
                 letter++;
-                j = 0;
+                j = -1;
             }
         }
     }
@@ -151,8 +151,12 @@ public abstract class Transit implements Info {
     @Override
     public String toString() {
         try {
+            String allSeatsStatus = "";
+            for (Seat seat : seats) {
+                allSeatsStatus += seat.getIsEmpty() + ", ";
+            }
             return getClass().getSimpleName() + ", " + ((int) (100 * price) / 100.0) + ", " + getTravelTime() + ", "
-                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity;
+                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + allSeatsStatus;
         } catch (Exception e) {
             return "";
         }

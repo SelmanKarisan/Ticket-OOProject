@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
@@ -55,7 +56,7 @@ public class Test {
                 scanner = new Scanner(new File("./TravelPlan.txt"));
                 readFileAndCreateObject("./TravelPlan.txt");
                 while (scanner.hasNextLine()) {
-                    var line = scanner.nextLine().split(", ");
+                    String[] line = scanner.nextLine().split(", ");
                     if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
                         switch (vehicleName) {
                             case "Airplane": {
@@ -73,21 +74,30 @@ public class Test {
                             }
 
                             case "Bus": {
-                                appendToFile("./SeatSchema.txt",
-                                        "Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n",
-                                        (counter > 1) ? true : false);
+                                System.out.println("Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n");
                                 break;
                             }
 
                         }
                     }
                 }
-                scanner.close();
 
+                System.out.print("Varış noktası giriniz:");
+                String seatNumber = scanner.next().toUpperCase();
+                int counterForSeatNumber = 0;
+                for (int i = 2; scanner.hasNextLine(); i++) {
+                    counterForSeatNumber++;
+                    String[] seatLine = scanner.nextLine().split(" ");
+                    if (!seatLine[2].equals("Occupied") && seatNumber.equals(seatLine[0])) {
+                        seatLine[2] = "Occupied";
+                    }
+                }
+                updateSeatStatus(counterForSeatNumber);
+                scanner.close();
                 break;
             case 2:
                 // kullanıcı girişi
-                var isAdminLogged = false;
+                Boolean isAdminLogged = false;
                 do {
                     System.out.print("Kullanıcı adını giriniz:");
                     String userName = scanner.next();
@@ -113,7 +123,7 @@ public class Test {
                         appendToFile("./TravelPlan.txt", train.toString(), true);
                         break;
                     case 3:
-                        Transit bus = new Bus(getInput(Train.INPUTS));
+                        Transit bus = new Bus(getInput(Bus.INPUTS));
                         appendToFile("./TravelPlan.txt", bus.toString(), true);
                         break;
                     default:
@@ -127,13 +137,13 @@ public class Test {
 
     private static void readFileAndCreateObject(String filePath) throws Exception {
 
-        var file = new File(filePath);
-        var scanner = new Scanner(file);
+        File file = new File(filePath);
+        Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
             int timeSelection = 0;
 
-            var line = scanner.nextLine().split(", ");
+            String[] line = scanner.nextLine().split(", ");
             if (line[2].equals("Sabah")) {
                 timeSelection = 1;
             }
@@ -163,9 +173,18 @@ public class Test {
 
     }
 
+    private static ArrayList<Boolean> updateSeatStatus(int index) {
+        ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
+        Transit.seats.get(index).setIsEmpty(false);
+        for (Seat seat : Transit.seats) {
+            updatedSeatStatus.add(seat.getIsEmpty());
+        }
+        return updatedSeatStatus;
+    }
+
     private static void appendToFile(String filePath, String value, boolean append) throws Exception {
-        var file = new File(filePath);
-        var fileWriter = new FileWriter(file, append);
+        File file = new File(filePath);
+        FileWriter fileWriter = new FileWriter(file, append);
         fileWriter.write(value + "\n");
         fileWriter.close();
     }

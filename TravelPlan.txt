@@ -2,3 +2,5 @@ Bus, 62.0, Ogle, istanbul, izmir, 31.0, 20
 Airplane, 77.5, Aksam, adiyaman, izmir, 31.0, 20
 Bus, 18.0, Sabah, ankara, izmir, 12.0, 32
 Airplane, 60.0, Gece, adiyaman, izmir, 20.0, 30
+Airplane, 24.0, Ogle, ad?yaman, afyon, 12.0, 31
+Train, 30.0, Aksam, izmir, ankara, 12.0, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 
