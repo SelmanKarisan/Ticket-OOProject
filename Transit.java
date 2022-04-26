@@ -170,11 +170,10 @@ public abstract class Transit implements Info {
         try {
             String allSeatsStatus = "";
             for (Seat seat : seats) {
-                allSeatsStatus += seat.getIsEmpty() + ", ";
+                allSeatsStatus +=  ", " + seat.getIsEmpty() ;
             }
             return getClass().getSimpleName() + ", " + ((int) (100 * price) / 100.0) + ", " + getTravelTime() + ", "
-                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity + ", "
-                    + allSeatsStatus + "\n";
+                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity + allSeatsStatus + "\n";
         } catch (Exception e) {
             return "";
         }

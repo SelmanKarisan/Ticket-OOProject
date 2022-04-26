@@ -60,14 +60,20 @@ public class Test {
                     if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
                         switch (vehicleName) {
                             case "Airplane": {
+                                writeToFile("./SeatSchema.txt",
+                                        "Uçak, Ucret: " + line[1] + Airplane.shemaOfSeats() + "\n", false);
                                 System.out.println("Uçak, Ucret: " + line[1] + Airplane.shemaOfSeats() + "\n");
                                 break;
                             }
                             case "Train": {
+                                writeToFile("./SeatSchema.txt", "Tren, Ucret: " + line[1] + Train.shemaOfSeats() + "\n",
+                                        false);
                                 System.out.println("Tren, Ucret: " + line[1] + Train.shemaOfSeats() + "\n");
                                 break;
                             }
                             case "Bus": {
+                                writeToFile("./SeatSchema.txt", "Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n",
+                                        false);
                                 System.out.println("Otobüs, Ucret: " + line[1] + Bus.shemaOfSeats() + "\n");
                                 break;
                             }
@@ -75,30 +81,46 @@ public class Test {
                     }
                 }
                 scanner.close();
-
                 scanner = new Scanner(System.in);
                 System.out.print("Koltuk seçiniz:");
                 String seatNumber = scanner.next().toUpperCase();
-                int counterForSeatNumber = 0;
-                //finding place
-                for (int i = 2; scanner.hasNextLine(); i++) {
-                    counterForSeatNumber++;
-                    String[] seatLine = scanner.nextLine().split(" ");
-                    if (seatLine[2].equals("Free") && seatNumber.equals(seatLine[0])) {
-                        break;
-                    }
-                }
                 scanner.close();
 
-                updateSeatStatus(counterForSeatNumber);
+                scanner = new Scanner(new File("./SeatSchema.txt"));
+                int counterForSeatNumber = 0;
+                // finding place
+                while (scanner.hasNextLine()) {
+                    counterForSeatNumber++;
+                    String[] seatLine = scanner.nextLine().split(" ");
+                    if (counterForSeatNumber < 3) {
+                        continue;
+                    }
+                    if (seatNumber.equals(seatLine[0]) && seatLine[2].equals("Free")) {
+                        System.out.println("Koltuk seçilmiştir");
+                        break;
+                    }
+                    
+                    if (seatNumber.equals(seatLine[0]) && !seatLine[2].equals("Free")) {
+                        System.out.println("Seçtiğiniz koltuk uygun değil");
+                        break;
+                    }
+                        
+                }
+                counterForSeatNumber -= 2;
+                scanner.close();
+
+                // updateSeatStatus(counterForSeatNumber);
                 scanner = new Scanner(new File("./TravelPlan.txt"));
                 String lines = "";
                 while (scanner.hasNextLine()) {
-                    lines += scanner.nextLine();
-                    if (vehicleName.equals(scanner.nextLine().split(", ")[0])
-                            && destination.equals(scanner.nextLine().split(", ")[3])
-                            && initialLocation.equals(scanner.nextLine().split(", ")[4])) {
-                        scanner.nextLine().split(", ")[6 + counterForSeatNumber] = "false";
+
+                    String[] line = scanner.nextLine().split(", ");
+                    if (line[0].equals("")) {
+                        continue;
+                    }
+                    if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
+                        line[6 + counterForSeatNumber] = "false";
+                        lines += String.join(", ", line);
                     }
                 }
                 writeToFile("./TravelPlan.txt", lines, false);
@@ -150,17 +172,18 @@ public class Test {
 
         while (scanner.hasNextLine()) {
             int timeSelection = 0;
+
             String[] line = scanner.nextLine().split(", ");
+            if (line[0].equals("")) {
+                continue;
+            }
             if (line[2].equals("Sabah")) {
                 timeSelection = 1;
-            }
-            if (line[2].equals("Ogle")) {
+            } else if (line[2].equals("Ogle")) {
                 timeSelection = 2;
-            }
-            if (line[2].equals("Aksam")) {
+            } else if (line[2].equals("Aksam")) {
                 timeSelection = 3;
-            }
-            if (line[2].equals("Gece")) {
+            } else if (line[2].equals("Gece")) {
                 timeSelection = 4;
             }
             ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
@@ -169,19 +192,21 @@ public class Test {
                     updatedSeatStatus.add(true);
                 } else {
                     updatedSeatStatus.add(false);
-                } 
+                }
 
             }
             switch (line[0]) {
                 case "Airplane":
                     new Airplane(timeSelection, line[3], line[4], Double.parseDouble(line[5]),
-                            Integer.parseInt(line[6]),updatedSeatStatus);
+                            Integer.parseInt(line[6]), updatedSeatStatus);
                     break;
                 case "Train":
-                    new Train(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),updatedSeatStatus);
+                    new Train(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),
+                            updatedSeatStatus);
                     break;
                 case "Bus":
-                    new Bus(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),updatedSeatStatus);
+                    new Bus(timeSelection, line[3], line[4], Double.parseDouble(line[5]), Integer.parseInt(line[6]),
+                            updatedSeatStatus);
                     break;
             }
         }
@@ -189,14 +214,14 @@ public class Test {
 
     }
 
-    private static ArrayList<Boolean> updateSeatStatus(int index) {
-        ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
-        Transit.seats.get(index).setIsEmpty(false);
-        for (Seat seat : Transit.seats) {
-            updatedSeatStatus.add(seat.getIsEmpty());
-        }
-        return updatedSeatStatus;
-    }
+    // private static ArrayList<Boolean> updateSeatStatus(int index) {
+    // ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
+    // Transit.seats.get(index).setIsEmpty(false);
+    // for (Seat seat : Transit.seats) {
+    // updatedSeatStatus.add(seat.getIsEmpty());
+    // }
+    // return updatedSeatStatus;
+    // }
 
     private static void writeToFile(String filePath, String value, boolean append) throws Exception {
         File file = new File(filePath);

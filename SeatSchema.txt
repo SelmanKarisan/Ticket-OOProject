@@ -1,0 +1,16 @@
+Uçak, Ucret: 244.0
+--------------------------
+A1 Status: Occupied
+A2 Status: Occupied
+A3 Status: Occupied
+A4 Status: Occupied
+B1 Status: Free
+B2 Status: Free
+B3 Status: Free
+B4 Status: Free
+C1 Status: Free
+C2 Status: Free
+C3 Status: Free
+C4 Status: Free
+
+

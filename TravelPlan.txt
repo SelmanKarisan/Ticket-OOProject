@@ -1,1 +1,1 @@
-Airplane, 18.0, Sabah, ankara, izmir, 12.0, 12, true, true, true, true, true, true, true, true, true, true, true, true, 
+Airplane, 244.0, Ogle, istanbul, izmir, 122.0, 12, false, false, false, false, true, false, true, true, true, true, true, true
