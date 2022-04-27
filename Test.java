@@ -99,12 +99,12 @@ public class Test {
                         System.out.println("Koltuk seçilmiştir");
                         break;
                     }
-                    
+
                     if (seatNumber.equals(seatLine[0]) && !seatLine[2].equals("Free")) {
                         System.out.println("Seçtiğiniz koltuk uygun değil");
                         break;
                     }
-                        
+
                 }
                 counterForSeatNumber -= 2;
                 scanner.close();
@@ -120,8 +120,8 @@ public class Test {
                     }
                     if (vehicleName.equals(line[0]) && destination.equals(line[3]) && initialLocation.equals(line[4])) {
                         line[6 + counterForSeatNumber] = "false";
-                        lines += String.join(", ", line);
                     }
+                    lines += (String.join(", ", line) + "\n");
                 }
                 writeToFile("./TravelPlan.txt", lines, false);
                 scanner.close();
