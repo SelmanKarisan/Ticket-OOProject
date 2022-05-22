@@ -10,7 +10,7 @@ public class Test {
     private final static String adminPassword = "1883";
 
     public static GenericInput[] getInput(GenericInput[] inputs) {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         for (GenericInput input : inputs) {
             System.out.print(input.getMessage());
             if (input.getType().equals(String.class.getSimpleName())) {
@@ -47,6 +47,7 @@ public class Test {
     }
 
     private static void createTravel() throws Exception {
+        scanner = new Scanner(System.in);
         System.out.println("Hangi araç için sefer eklemek istiyorsunuz\n1-Uçak\n2-Tren\n3-Otobüs");
         int transitSelection = scanner.nextInt();
         scanner.close();
@@ -105,7 +106,7 @@ public class Test {
                 throw new Exception("bulunamadı");
         }
 
-        var transits = getTransitsFromFile("./TravelPlan.txt");
+        ArrayList<Transit> transits = getTransitsFromFile("./TravelPlan.txt");
         Transit selectedTransit = null;
         for (Transit transit : transits) {
             if (transit.getType() == vehicleType && destination.equals(transit.getDestination())
@@ -113,8 +114,9 @@ public class Test {
                 selectedTransit = transit;
             }
         }
-        if (selectedTransit == null)
+        if (selectedTransit == null) {
             throw new Exception("bulunamadı");
+        }
 
         System.out.println(selectedTransit.getType() + ", Price: " + selectedTransit.getPrice()
                 + selectedTransit.shemaOfSeats());
@@ -123,21 +125,30 @@ public class Test {
         System.out.print("\nKoltuk seçiniz:");
         String seatNumber = scanner.next().toUpperCase();
         scanner.close();
-
+        boolean isExist = false;
         for (Seat seat : selectedTransit.getSeats()) {
-            if (seat.getLocation() == seatNumber) {
-                if (seat.getIsEmpty()) {
-                    seat.setIsEmpty(true);
-                    System.out.println("Koltuk seçilmiştir");
+            if (seatNumber.equals(seat.getLocation())) {
+                isExist = true;
+            }
+        }
+        if (isExist) {
+            for (Seat seat : selectedTransit.getSeats()) {
+                if (seat.getLocation().equals(seatNumber)) {
+                    if (seat.getIsEmpty()) {
+                        seat.setIsEmpty(false);
+                        System.out.println("Koltuk seçilmiştir");
+                        break;
+                    }
+                    System.out.println("Seçtiğiniz koltuk uygun değil!");
                     break;
                 }
-                System.out.println("Seçtiğiniz koltuk uygun değil");
-                break;
             }
-            // Todo: Wrong seat selected
+        } else {
+            System.out.println("Böyle bir koltuk yok!");
         }
 
-        // TODO: setTravelsToFile
+        updateTravels(transits);
+        // Todo: setTravelsToFile
 
         // // updateSeatStatus(counterForSeatNumber);
         // scanner = new Scanner(new File("./TravelPlan.txt"));
@@ -172,8 +183,8 @@ public class Test {
     }
 
     private static ArrayList<Transit> getTransitsFromFile(String filePath) throws Exception {
-        Scanner scanner = new Scanner(new File(filePath));
-        ArrayList<Transit> transits = new ArrayList<Transit>();
+        scanner = new Scanner(new File(filePath));
+        ArrayList<Transit> transits = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(", ");
             if (line[0].equals("")) {
@@ -195,9 +206,17 @@ public class Test {
     // }
 
     private static void writeToFile(String filePath, String value, boolean append) throws Exception {
-        File file = new File(filePath);
-        FileWriter fileWriter = new FileWriter(file, append);
-        fileWriter.write(value + "\n");
+        FileWriter fileWriter = new FileWriter(new File(filePath), append);
+        fileWriter.write(value);
         fileWriter.close();
+    }
+
+    private static void updateTravels(ArrayList<Transit> transits) throws Exception {
+        // remove all
+        writeToFile("./TravelPlan.txt", "", false);
+        // append all
+        for (Transit transit : transits) {
+            writeToFile("./TravelPlan.txt", transit.toString(), true);
+        }
     }
 }

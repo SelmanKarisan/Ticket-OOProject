@@ -1,6 +1,11 @@
+
 Train, 30.0, Aksam, izmir, istanbul, 12.0, 12, false, false, true, true, true, false, true, true, true, true, true, true
+
 Airplane, 36.0, Gece, antep, ankara, 12.0, 20, true, false, false, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+
 Airplane, 244.0, Ogle, izmir, ankara, 122.0, 12, true, false, true, true, true, true, true, true, true, true, true, true
+
 Airplane, 18.0, Sabah, adana, adana, 12.0, 2, false, false
-Train, 4.0, Ogle, istanbul, adana, 2.0, 10, false, true, true, true, true, true, true, true, true, true
+
+Train, 4.0, Ogle, istanbul, adana, 2.0, 10, false, false, true, false, true, true, true, true, true, true
 
