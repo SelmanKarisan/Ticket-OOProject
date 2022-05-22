@@ -1,4 +1,4 @@
-Uçak, Ucret: 244.0
+Tren, Ucret: 4.0
 --------------------------
 A1 Status: Free
 A2 Status: Free
@@ -10,7 +10,5 @@ B3 Status: Free
 B4 Status: Free
 C1 Status: Free
 C2 Status: Free
-C3 Status: Free
-C4 Status: Free
 
 
