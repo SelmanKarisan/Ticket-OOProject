@@ -13,13 +13,20 @@ public class Train extends Transit {
 
     public Train(GenericInput[] inputs) throws Exception {
         super(inputs);
+        this.setType("Train");
         calculatePrice();
     }
 
     public Train(int travelTime, String destination, String initialLocation, double coefficentOfPrice,
             int seatCapacity, ArrayList<Boolean> updatedSeatStatus) throws Exception {
         super(travelTime, destination, initialLocation, coefficentOfPrice, seatCapacity, updatedSeatStatus);
-        super.generateSeats();
+        this.setType("Train");
+        calculatePrice();
+    }
+
+    public Train(String[] line) throws Exception {
+        super(line);
+        this.setType("Train");
         calculatePrice();
     }
 

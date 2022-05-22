@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 
 public abstract class Transit implements Info {
+    private String type;
     private double price;
     private double travelTime;
     private String destination;
     private String initialLocation;
     private double coefficentOfPrice;
     private int seatCapacity;
-    public static ArrayList<Seat> seats;
+    private ArrayList<Seat> seats;
     private ArrayList<Boolean> updatedSeatStatus;
 
     public Transit(GenericInput[] inputs) throws Exception {
@@ -29,16 +30,16 @@ public abstract class Transit implements Info {
                     this.seatCapacity = (int) input.getValue();
                     break;
             }
-            generateSeats();
         }
+        generateSeats();
     }
 
-    public ArrayList<Boolean> getUpdatedSeatStatus() {
-        return updatedSeatStatus;
+    public String getType() {
+        return type;
     }
 
-    public void setUpdatedSeatStatus(ArrayList<Boolean> updatedSeatStatus) {
-        this.updatedSeatStatus = updatedSeatStatus;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Transit(int travelTime, String destination, String initialLocation, double coefficentOfPrice,
@@ -51,6 +52,48 @@ public abstract class Transit implements Info {
         this.updatedSeatStatus = updatedSeatStatus;
 
         generateSeats();
+    }
+
+    public Transit(String[] line) throws Exception {
+        int timeSelection;
+        switch (line[2]) {
+            case "Sabah":
+                timeSelection = 1;
+                break;
+            case "Ogle":
+                timeSelection = 2;
+                break;
+            case "Aksam":
+                timeSelection = 3;
+                break;
+            case "Gece":
+                timeSelection = 4;
+                break;
+            default:
+                timeSelection = 0;
+                break;
+        }
+        ArrayList<Boolean> updatedSeatStatus = new ArrayList<>();
+        for (int i = 7; i < line.length; i++) {
+            updatedSeatStatus.add(Boolean.parseBoolean(line[i]));
+        }
+
+        setTravelTime(timeSelection);
+        this.destination = line[3];
+        this.initialLocation = line[4];
+        this.coefficentOfPrice = Double.parseDouble(line[5]);
+        this.seatCapacity = Integer.parseInt(line[6]);
+        this.updatedSeatStatus = updatedSeatStatus;
+
+        generateSeats();
+    }
+
+    public ArrayList<Boolean> getUpdatedSeatStatus() {
+        return updatedSeatStatus;
+    }
+
+    public void setUpdatedSeatStatus(ArrayList<Boolean> updatedSeatStatus) {
+        this.updatedSeatStatus = updatedSeatStatus;
     }
 
     public int getseatCapacity() {
@@ -66,7 +109,7 @@ public abstract class Transit implements Info {
     }
 
     public void setSeats(ArrayList<Seat> seats) {
-        Transit.seats = seats;
+        this.seats = seats;
     }
 
     public double getCoefficentOfPrice() {
@@ -157,9 +200,9 @@ public abstract class Transit implements Info {
         }
     }
 
-    public static String shemaOfSeats() {
+    public String shemaOfSeats() {
         String shema = "\n--------------------------\n";
-        for (Seat seat : seats) {
+        for (Seat seat : this.seats) {
             shema += seat.getLocation() + " Status: " + (seat.getIsEmpty() ? "Free" : "Occupied") + "\n";
         }
         return shema;
@@ -170,10 +213,11 @@ public abstract class Transit implements Info {
         try {
             String allSeatsStatus = "";
             for (Seat seat : seats) {
-                allSeatsStatus +=  ", " + seat.getIsEmpty() ;
+                allSeatsStatus += ", " + seat.getIsEmpty();
             }
             return getClass().getSimpleName() + ", " + ((int) (100 * price) / 100.0) + ", " + getTravelTime() + ", "
-                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity + allSeatsStatus + "\n";
+                    + destination + ", " + initialLocation + ", " + coefficentOfPrice + ", " + seatCapacity
+                    + allSeatsStatus + "\n";
         } catch (Exception e) {
             return "";
         }
