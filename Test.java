@@ -10,7 +10,6 @@ public class Test {
     private final static String adminPassword = "1883";
 
     public static GenericInput[] getInput(GenericInput[] inputs) {
-        scanner = new Scanner(System.in);
         for (GenericInput input : inputs) {
             System.out.print(input.getMessage());
             if (input.getType().equals(String.class.getSimpleName())) {
@@ -21,7 +20,6 @@ public class Test {
                 input.setValue(scanner.nextInt());
             }
         }
-        scanner.close();
         return inputs;
     }
 
@@ -47,10 +45,8 @@ public class Test {
     }
 
     private static void createTravel() throws Exception {
-        scanner = new Scanner(System.in);
         System.out.println("Hangi araç için sefer eklemek istiyorsunuz\n1-Uçak\n2-Tren\n3-Otobüs");
         int transitSelection = scanner.nextInt();
-        scanner.close();
         switch (transitSelection) {
             case 1:
                 Transit airplane = new Airplane(getInput(Airplane.INPUTS));
@@ -121,10 +117,10 @@ public class Test {
         System.out.println(selectedTransit.getType() + ", Price: " + selectedTransit.getPrice()
                 + selectedTransit.shemaOfSeats());
 
-        scanner = new Scanner(System.in);
         System.out.print("\nKoltuk seçiniz:");
         String seatNumber = scanner.next().toUpperCase();
         scanner.close();
+
         boolean isExist = false;
         for (Seat seat : selectedTransit.getSeats()) {
             if (seatNumber.equals(seat.getLocation())) {
@@ -183,7 +179,7 @@ public class Test {
     }
 
     private static ArrayList<Transit> getTransitsFromFile(String filePath) throws Exception {
-        scanner = new Scanner(new File(filePath));
+        Scanner scanner = new Scanner(new File(filePath));
         ArrayList<Transit> transits = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(", ");
